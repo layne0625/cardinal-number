@@ -1,4 +1,4 @@
-import { getCardinalDescription } from '../src';
+import { getCardinalDescription, getHundreds2Thousands, getZero2Hundreds, getThousands2Millons } from '../src';
 
 describe('0: cero', () => {
   it('works', () => {
@@ -294,5 +294,30 @@ describe('199: ciento noventa y nueve', () => {
 describe('7133442: siete millones ciento treinta y tres mil cuatrocientos cuarenta y dos', () => {
   it('works', () => {
     expect(getCardinalDescription(7133442)).toEqual('siete millones ciento treinta y tres mil cuatrocientos cuarenta y dos')
+  })
+})
+
+describe('102: empty array', () => {
+  it('works', () => {
+    expect(getZero2Hundreds(102)).toEqual([])
+  })
+})
+
+
+describe('1002: empty array', () => {
+  it('works', () => {
+    expect(getHundreds2Thousands(1002)).toEqual([])
+  })
+})
+
+describe('1000002: empty array', () => {
+  it('works', () => {
+    expect(getThousands2Millons(10000002)).toEqual([])
+  })
+})
+
+describe('not a number', () => {
+  it('works', () => {
+    expect(getCardinalDescription('aaaa')).toEqual('')
   })
 })

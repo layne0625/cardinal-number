@@ -59,7 +59,7 @@ const hundredsMap: NumberDictType = {
 
 const AND = 'y';
 
-const getZero2Hundreds = (num: number, special = false) => {
+export const getZero2Hundreds = (num: number, special = false) => {
   if (num >= 100) {
     return [];
   }
@@ -79,7 +79,7 @@ const getZero2Hundreds = (num: number, special = false) => {
   return num !== 0 ? [num === 1 && special ? 'un' : baseMap[num]] : [];
 };
 
-const getHundreds2Thousands = (num: number, special = false) => {
+export const getHundreds2Thousands = (num: number, special = false) => {
   if (num >= 1000) {
     return [];
   }
@@ -96,7 +96,7 @@ const getHundreds2Thousands = (num: number, special = false) => {
   return strList;
 };
 
-const getThousands2Millons = (num: number, special = false) => {
+export const getThousands2Millons = (num: number, special = false) => {
   if (num >= 1000000) {
     return [];
   }
@@ -116,7 +116,7 @@ const getThousands2Millons = (num: number, special = false) => {
 };
 
 
-export const getCardinalDescription = (num: number): string => {
+export const getCardinalDescription = (num: any): string => {
   if (typeof num !== 'number') {
     return ''
   }
