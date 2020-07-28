@@ -6,13 +6,16 @@ Convert numbers to cardinal numbers
 ``` javascript
 import { getCardinalDescription } from 'cardinal-convert';
 
-const str = getCardinalDescription(1000) // cardinal str
+console.log(getCardinalDescription(222000)) // doscientos veintidós mil
+console.log(getCardinalDescription(1225)) // mil doscientos veinticinco
+console.log(getCardinalDescription(102)) // ciento dos
+console.log(getCardinalDescription(199)) // ciento noventa y nueve
 ```
 
 ## Support language
 - [x] Spanish
-- [ ] Chinese
-- [ ] English
+- [ ] Chinese(todo)
+- [ ] English(todo)
 
 ## test 
 
