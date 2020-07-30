@@ -4,21 +4,23 @@ Convert numbers to cardinal numbers
 
 ## Usage
 ``` javascript
-import { getCardinalDescription } from 'cardinal-convert';
+import convert, { locale } from 'cardinal-convert';
+locale('es')
 
-console.log(getCardinalDescription(222000)) // doscientos veintidós mil
-console.log(getCardinalDescription(1225)) // mil doscientos veinticinco
-console.log(getCardinalDescription(102)) // ciento dos
-console.log(getCardinalDescription(199)) // ciento noventa y nueve
+console.log(convert(222000)) // doscientos veintidós mil
+console.log(convert(1225)) // mil doscientos veinticinco
+console.log(convert(102)) // ciento dos
+console.log(convert(199)) // ciento noventa y nueve
 ```
 
 ## Support language
+- [x] Chinese
 - [x] Spanish
-- [ ] Chinese(todo)
 - [ ] English(todo)
 
 ## test 
 
 File      |  % Stmts | % Branch |  % Funcs |  % Lines | Uncovered Line #s |
 ----------|----------|----------|----------|----------|-------------------|
- index.ts |      100 |    97.37 |      100 |      100 |               130 |
+es.ts     |      100 |     97.5 |      100 |      100 |               128 |
+zh.ts     |      100 |      100 |      100 |      100 |                   |
