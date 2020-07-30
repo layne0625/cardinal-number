@@ -1,6 +1,6 @@
 # Introduce
 
-Convert numbers to cardinal numbers
+Convert numbers to cardinal numbers, 2kb size
 
 ## Usage
 ``` javascript
