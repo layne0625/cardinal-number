@@ -1,5 +1,5 @@
 {
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -43,5 +43,10 @@
     "type": "git",
     "url": "https://github.com/layne0625/cardinal-convert"
   },
-  "keywords": ["cardinal numbers", "uppercase numbers", "format numbers", "numbers"]
+  "keywords": [
+    "cardinal numbers",
+    "uppercase numbers",
+    "format numbers",
+    "numbers"
+  ]
 }
