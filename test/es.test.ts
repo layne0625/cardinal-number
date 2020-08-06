@@ -1,8 +1,4 @@
-import getCardinalDescription, {
-  getHundreds2Thousands,
-  getZero2Hundreds,
-  getThousands2Millons,
-} from '../src/languages/es';
+import getCardinalDescription from '../src/languages/es';
 
 describe('0: cero', () => {
   it('works', () => {
@@ -305,26 +301,47 @@ describe('7133442: siete millones ciento treinta y tres mil cuatrocientos cuaren
   });
 });
 
-describe('102: empty array', () => {
+describe('199.20: ciento noventa y nueve pesos 20/100 MIN', () => {
   it('works', () => {
-    expect(getZero2Hundreds(102)).toEqual([]);
+    expect(getCardinalDescription(199.2, true)).toEqual(
+      'ciento noventa y nueve pesos 20/100 MIN'
+    );
   });
 });
 
-describe('1002: empty array', () => {
+describe('199.02: ciento noventa y nueve pesos 02/100 MIN', () => {
   it('works', () => {
-    expect(getHundreds2Thousands(1002)).toEqual([]);
+    expect(getCardinalDescription(199.02, true)).toEqual(
+      'ciento noventa y nueve pesos 02/100 MIN'
+    );
   });
 });
 
-describe('1000002: empty array', () => {
+describe('199.026: ciento noventa y nueve pesos 02/100 MIN', () => {
   it('works', () => {
-    expect(getThousands2Millons(10000002)).toEqual([]);
+    expect(getCardinalDescription(199.026, true)).toEqual(
+      'ciento noventa y nueve pesos 02/100 MIN'
+    );
   });
 });
 
-describe('not a number', () => {
+describe('199: ciento noventa y nueve pesos 00/100 MIN', () => {
   it('works', () => {
-    expect(getCardinalDescription('aaaa')).toEqual('');
+    expect(getCardinalDescription(199, true)).toEqual(
+      'ciento noventa y nueve pesos 00/100 MIN'
+    );
+  });
+});
+
+const formatPoints = (num: number): string[] => {
+  console.log(num);
+  return ['dddd'];
+};
+
+describe('199: ciento noventa y nueve dddd', () => {
+  it('works', () => {
+    expect(getCardinalDescription(199, formatPoints)).toEqual(
+      'ciento noventa y nueve dddd'
+    );
   });
 });

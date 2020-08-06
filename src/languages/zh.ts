@@ -1,5 +1,5 @@
-import { NumberDictType } from '../types';
-
+import { NumberDictType, FormatAmountFunction } from '../types';
+import { getPoints } from '../utils';
 const baseMap: NumberDictType = {
   0: '零',
   1: '壹',
@@ -35,12 +35,31 @@ const formatStrList = (temp: any[], cur: number, index: number) => {
   return [...temp, baseMap[cur], indexMap[index]];
 };
 
-export default (num: number): string => {
-  if (typeof num !== 'number' || Number.isNaN(num)) {
-    return '';
+const defaultFormatPoints: FormatAmountFunction = num => {
+  if (num === 0) {
+    return ['元整'];
   }
-  if (num >= 10 ** 12) {
-    throw new Error(`The maximum number is ${10 ** 12 - 1}`);
+  const tens = Math.floor(num / 10);
+  const digits = num % 10;
+  let strList: string[] = [];
+  if (tens > 0 || digits > 0) {
+    strList = ['元'];
+  }
+  strList = tens > 0 ? [...strList, baseMap[tens], '角'] : [...strList];
+  return digits > 0 ? [...strList, baseMap[digits], '分'] : strList;
+};
+
+export default (
+  num: number,
+  formatAmount?: FormatAmountFunction | boolean
+): string => {
+  let pointsList: string[] = [];
+  if (formatAmount) {
+    const points = getPoints(num);
+    pointsList =
+      typeof formatAmount === 'function'
+        ? formatAmount(num)
+        : defaultFormatPoints(points);
   }
   const integer = Math.floor(num);
   const itemList = `${integer}`.split('').map(item => Number(item));
@@ -76,5 +95,5 @@ export default (num: number): string => {
     strList.pop();
   }
 
-  return strList.join('');
+  return [...strList, ...pointsList].join('');
 };

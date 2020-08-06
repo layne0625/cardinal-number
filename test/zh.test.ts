@@ -1,4 +1,5 @@
 import getDescription from '../src/languages/zh';
+import { getPoints } from '../src/utils';
 
 describe('0: empty', () => {
   it('works', () => {
@@ -372,13 +373,44 @@ describe('808080080808: 捌仟零捌拾亿零捌仟零捌万零捌佰零捌', ()
     );
   });
 });
-describe('not a number', () => {
+
+describe('90009: 玖万零玖元整', () => {
   it('works', () => {
-    expect(getDescription(Number('a'))).toEqual('');
+    expect(getDescription(90009, true)).toEqual('玖万零玖元整');
   });
 });
-describe('Exceeds the maximum', () => {
+
+describe('90009.09: 玖万零玖元玖分', () => {
   it('works', () => {
-    expect(() => getDescription(10 ** 12)).toThrowError(/maximum/);
+    expect(getDescription(90009.09, true)).toEqual('玖万零玖元玖分');
+  });
+});
+
+describe('90009.9: 玖万零玖元玖角', () => {
+  it('works', () => {
+    expect(getDescription(90009.9, true)).toEqual('玖万零玖元玖角');
+  });
+});
+
+describe('90009.98: 玖万零玖元玖角捌分', () => {
+  it('works', () => {
+    expect(getDescription(90009.98, true)).toEqual('玖万零玖元玖角捌分');
+  });
+});
+
+describe('90009.989: 玖万零玖元玖角捌分', () => {
+  it('works', () => {
+    expect(getDescription(90009.989, true)).toEqual('玖万零玖元玖角捌分');
+  });
+});
+
+const formatPoints = (num: number): string[] => {
+  const points = getPoints(num, 3);
+  return [`${points}`];
+};
+
+describe('90009.989: 玖万零玖989', () => {
+  it('works', () => {
+    expect(getDescription(90009.989, formatPoints)).toEqual('玖万零玖989');
   });
 });

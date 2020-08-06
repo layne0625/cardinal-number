@@ -1,4 +1,5 @@
-import { NumberDictType } from '../types';
+import { NumberDictType, FormatAmountFunction } from '../types';
+import { getPoints } from '../utils';
 
 const baseMap: NumberDictType = {
   0: 'cero',
@@ -57,11 +58,7 @@ const hundredsMap: NumberDictType = {
 
 const AND = 'y';
 
-export const getZero2Hundreds = (num: number, special = false) => {
-  if (num >= 100) {
-    return [];
-  }
-
+const getZero2Hundreds = (num: number, special = false) => {
   if (num >= 30) {
     const digits = num % 10;
     const digitsStr = baseMap[digits];
@@ -77,10 +74,7 @@ export const getZero2Hundreds = (num: number, special = false) => {
   return num !== 0 ? [num === 1 && special ? 'un' : baseMap[num]] : [];
 };
 
-export const getHundreds2Thousands = (num: number, special = false) => {
-  if (num >= 1000) {
-    return [];
-  }
+const getHundreds2Thousands = (num: number, special = false) => {
   // 100比较特殊， 100整数位‘cien’, 比100大的数用ciento
   if (num === 100) {
     return ['cien'];
@@ -94,10 +88,7 @@ export const getHundreds2Thousands = (num: number, special = false) => {
   return strList;
 };
 
-export const getThousands2Millons = (num: number, special = false) => {
-  if (num >= 1000000) {
-    return [];
-  }
+const getThousands2Millons = (num: number, special = false) => {
   const millons = Math.floor(num / 1000);
   const rests = num % 1000;
   let strList = getHundreds2Thousands(rests, special);
@@ -112,25 +103,39 @@ export const getThousands2Millons = (num: number, special = false) => {
   return strList;
 };
 
-export default (num: any): string => {
-  if (typeof num !== 'number' || Number.isNaN(num)) {
-    return '';
+const defaultFormatPoints: FormatAmountFunction = num => {
+  const numStr = `00${num}`.slice(-2);
+  return ['pesos', `${numStr}/100 MIN`];
+};
+
+export default (
+  num: number,
+  formatAmount?: FormatAmountFunction | boolean
+): string => {
+  let pointsStrList: string[] = [];
+  // 处理小数
+  if (formatAmount) {
+    const points = getPoints(num);
+    pointsStrList =
+      typeof formatAmount === 'function'
+        ? formatAmount(num)
+        : defaultFormatPoints(points);
   }
+
   const integer = Math.floor(num);
   if (integer < 1000000) {
-    return getThousands2Millons(integer).join(' ');
+    return [...getThousands2Millons(integer), ...pointsStrList].join(' ');
   }
   const millons = Math.floor(integer / 1000000);
-  const rests = integer % 1000000;
+  const rests = Math.floor(integer % 1000000);
   let strList = getThousands2Millons(rests);
-  if (millons > 0) {
-    const millonsStrList = getThousands2Millons(millons, true);
-    // 百万大于1时用millones
-    strList = [
-      ...millonsStrList,
-      millons === 1 ? 'millón' : 'millones',
-      ...strList,
-    ];
-  }
-  return strList.join(' ');
+  const millonsStrList = getThousands2Millons(millons, true);
+  // 百万大于1时用millones
+  strList = [
+    ...millonsStrList,
+    millons === 1 ? 'millón' : 'millones',
+    ...strList,
+  ];
+
+  return [...strList, ...pointsStrList].join(' ');
 };

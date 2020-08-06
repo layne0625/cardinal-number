@@ -1,26 +1,74 @@
 # Introduce
 
-Convert numbers to cardinal numbers, 2kb size
+Convert numbers to cardinal numbers, or amount description
+## API
+
+### covert
+params      |  description | type |  default    |
+------------|--------------|------|----------|
+ num        |  number to be converted | number     |       |
+ formatAmount        |  convert value to amount format | number \| Function     |     false  |
+ 
+ ### locale
+ params   |     description   |    type   |  default    |
+----------|-------------------|-----------|----------|
+ locale   |  convert lanugage | zh \| es \| en     |    zh   |
+
 
 ## Usage
 ``` javascript
 import convert, { locale } from 'cardinal-convert';
-locale('es')
 
-console.log(convert(222000)) // doscientos veintidós mil
-console.log(convert(1225)) // mil doscientos veinticinco
-console.log(convert(102)) // ciento dos
-console.log(convert(199)) // ciento noventa y nueve
+// zh
+
+// 转成大写
+console.log(convert(90009)) // 玖万零玖
+// 格式化金额
+console.log(convert(90009, true)) // 玖万零玖元整
+console.log(convert(90009.9, true)) // 玖万零玖元玖角
+
+// es
+
+locale('es')
+//  convert cardinal number by default, ignore points
+console.log(convert(199.02)) // ciento noventa y nueve
+// convert peso currency by default
+console.log(convert(199.02, true)) // ciento noventa y nueve pesos 02/100 MIN
+
+
+// en
+
+locale('en')
+//  convert cardinal number by default
+console.log(convert(73)) // seventy-three
+// convert amount format
+console.log(convert(73.02, true)) // seventy-three and cents two only
+
+// or custom  convert points function
+const formatPoints = (num: number): string[] => {
+  const points = getPoints(num)
+  let pointsList = getLessThanHundred(points)
+  if (num !== 0) {
+    return ['and point', ...pointsList, 'only']
+  }
+  return ['only']
+}
+
+console.log(convert(73.02, formatPoints)) // seventy-three and point two only
+
+
 ```
 
 ## Support language
 - [x] Chinese
 - [x] Spanish
-- [ ] English(todo)
+- [x] English
 
-## test 
+## Test 
 
 File      |  % Stmts | % Branch |  % Funcs |  % Lines | Uncovered Line #s |
 ----------|----------|----------|----------|----------|-------------------|
-es.ts     |      100 |     97.5 |      100 |      100 |               128 |
-zh.ts     |      100 |      100 |      100 |      100 |                   |
+  en.ts   |      100 |    96.88 |      100 |      100 |                61 |
+  es.ts   |      100 |    93.75 |      100 |      100 |             61,77 |
+  zh.ts   |      100 |    96.88 |      100 |      100 |                45 |
+
