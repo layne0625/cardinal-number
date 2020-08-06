@@ -1,5 +1,5 @@
 {
-  "version": "1.0.6",
+  "version": "1.0.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -28,7 +28,7 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "cardinal-convert",
+  "name": "cardinal-number",
   "author": "尚雷",
   "devDependencies": {
     "husky": "^4.2.5",
@@ -36,10 +36,10 @@
     "tslib": "^2.0.0",
     "typescript": "^3.9.7"
   },
-  "homepage": "https://github.com/layne0625/cardinal-convert",
+  "homepage": "https://github.com/layne0625/cardinal-number",
   "repository": {
     "type": "git",
-    "url": "https://github.com/layne0625/cardinal-convert"
+    "url": "https://github.com/layne0625/cardinal-number.git"
   },
   "keywords": [
     "cardinal numbers",
