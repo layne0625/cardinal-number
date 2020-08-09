@@ -17,7 +17,7 @@ params      |  description | type |  default    |
 
 ## Usage
 ``` javascript
-import convert, { locale } from 'cardinal-convert';
+import convert, { locale } from 'cardinal-number';
 
 // zh
 
