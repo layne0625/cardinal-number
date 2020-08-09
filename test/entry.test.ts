@@ -15,20 +15,20 @@ describe('Exceeds the maximum', () => {
 describe('Exceeds the maximum', () => {
   it('works: twelve', () => {
     locale('en');
-    expect(convert(12)).toEqual('twelve');
+    expect(convert(12, false)).toEqual('twelve');
   });
 });
 
 describe('Exceeds the maximum', () => {
   it('works: doce', () => {
     locale('es');
-    expect(convert(12)).toEqual('doce');
+    expect(convert(12, false)).toEqual('doce');
   });
 });
 
 describe('Exceeds the maximum', () => {
   it('works: 壹拾贰', () => {
     locale('zh');
-    expect(convert(12)).toEqual('壹拾贰');
+    expect(convert(12)).toEqual('壹拾贰元整');
   });
 });

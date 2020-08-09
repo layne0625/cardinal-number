@@ -7,7 +7,7 @@ Convert numbers to cardinal numbers, or amount description
 params      |  description | type |  default    |
 ------------|--------------|------|----------|
  num        |  number to be converted | number     |       |
- formatAmount        |  convert value to amount format | number \| Function     |     false  |
+ formatAmount        |  convert value to amount format | boolean \| Function     |     true  |
  
  ### locale
  params   |     description   |    type   |  default    |
@@ -21,28 +21,29 @@ import convert, { locale } from 'cardinal-number';
 
 // zh
 
-// 转成大写
-console.log(convert(90009)) // 玖万零玖
 // 格式化金额
-console.log(convert(90009, true)) // 玖万零玖元整
-console.log(convert(90009.9, true)) // 玖万零玖元玖角
+console.log(convert(90009)) // 玖万零玖元整
+console.log(convert(90009.9)) // 玖万零玖元玖角
+// 转成大写
+console.log(convert(90009, false)) // 玖万零玖
 
 // es
 
 locale('es')
-//  convert cardinal number by default, ignore points
-console.log(convert(199.02)) // ciento noventa y nueve
 // convert peso currency by default
-console.log(convert(199.02, true)) // ciento noventa y nueve pesos 02/100 MIN
+console.log(convert(199.02)) // ciento noventa y nueve pesos 02/100 MIN
+//  convert cardinal number, ignore points
+console.log(convert(199.02, false)) // ciento noventa y nueve
+
 
 
 // en
-
 locale('en')
-//  convert cardinal number by default
-console.log(convert(73)) // seventy-three
 // convert amount format
-console.log(convert(73.02, true)) // seventy-three and cents two only
+console.log(convert(73.02)) // seventy-three and cents two only
+//  convert cardinal number by default
+console.log(convert(73, false)) // seventy-three
+
 
 // or custom  convert points function
 const formatPoints = (num: number): string[] => {

@@ -1,4 +1,10 @@
-import getCardinalDescription from '../src/languages/es';
+import convert from '../src/languages/es';
+import { FormatAmountFunction } from '../src/types';
+
+const getCardinalDescription = (
+  num: number,
+  formatAmount: FormatAmountFunction | boolean = false
+) => convert(num, formatAmount);
 
 describe('0: cero', () => {
   it('works', () => {

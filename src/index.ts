@@ -15,7 +15,7 @@ const store: StoreType = {
 
 export default (
   num: number,
-  formatAmount?: FormatAmountFunction | boolean
+  formatAmount: FormatAmountFunction | boolean = true
 ): string => {
   if (num === 0 || typeof num !== 'number' || Number.isNaN(num)) {
     return '';

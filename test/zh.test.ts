@@ -1,5 +1,11 @@
-import getDescription from '../src/languages/zh';
+import convert from '../src/languages/zh';
 import { getPoints } from '../src/utils';
+import { FormatAmountFunction } from '../src/types';
+
+const getDescription = (
+  num: number,
+  formatAmount: FormatAmountFunction | boolean = false
+) => convert(num, formatAmount);
 
 describe('0: empty', () => {
   it('works', () => {
