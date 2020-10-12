@@ -307,34 +307,34 @@ describe('7133442: siete millones ciento treinta y tres mil cuatrocientos cuaren
   });
 });
 
-describe('199.20: ciento noventa y nueve pesos 20/100 MIN', () => {
+describe('199.20: ciento noventa y nueve pesos 20/100 MN', () => {
   it('works', () => {
     expect(getCardinalDescription(199.2, true)).toEqual(
-      'ciento noventa y nueve pesos 20/100 MIN'
+      'ciento noventa y nueve pesos 20/100 MN'
     );
   });
 });
 
-describe('199.02: ciento noventa y nueve pesos 02/100 MIN', () => {
+describe('199.02: ciento noventa y nueve pesos 02/100 MN', () => {
   it('works', () => {
     expect(getCardinalDescription(199.02, true)).toEqual(
-      'ciento noventa y nueve pesos 02/100 MIN'
+      'ciento noventa y nueve pesos 02/100 MN'
     );
   });
 });
 
-describe('199.026: ciento noventa y nueve pesos 02/100 MIN', () => {
+describe('199.026: ciento noventa y nueve pesos 02/100 MN', () => {
   it('works', () => {
     expect(getCardinalDescription(199.026, true)).toEqual(
-      'ciento noventa y nueve pesos 02/100 MIN'
+      'ciento noventa y nueve pesos 02/100 MN'
     );
   });
 });
 
-describe('199: ciento noventa y nueve pesos 00/100 MIN', () => {
+describe('199: ciento noventa y nueve pesos 00/100 MN', () => {
   it('works', () => {
     expect(getCardinalDescription(199, true)).toEqual(
-      'ciento noventa y nueve pesos 00/100 MIN'
+      'ciento noventa y nueve pesos 00/100 MN'
     );
   });
 });

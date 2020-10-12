@@ -31,7 +31,7 @@ console.log(convert(90009, false)) // 玖万零玖
 
 locale('es')
 // convert peso currency by default
-console.log(convert(199.02)) // ciento noventa y nueve pesos 02/100 MIN
+console.log(convert(199.02)) // ciento noventa y nueve pesos 02/100 MN
 //  convert cardinal number, ignore points
 console.log(convert(199.02, false)) // ciento noventa y nueve
 

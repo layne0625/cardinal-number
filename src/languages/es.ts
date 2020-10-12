@@ -105,7 +105,7 @@ const getThousands2Millons = (num: number, special = false) => {
 
 const defaultFormatPoints: FormatAmountFunction = num => {
   const numStr = `00${num}`.slice(-2);
-  return ['pesos', `${numStr}/100 MIN`];
+  return ['pesos', `${numStr}/100 MN`];
 };
 
 export default (
