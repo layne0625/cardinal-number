@@ -124,7 +124,9 @@ export default (
 
   const integer = Math.floor(num);
   if (integer < 1000000) {
-    return [...getThousands2Millons(integer), ...pointsStrList].join(' ');
+    const strList = getThousands2Millons(integer);
+    const temp = strList.length > 0 ? strList : [baseMap[0]];
+    return [...temp, ...pointsStrList].join(' ');
   }
   const millons = Math.floor(integer / 1000000);
   const rests = Math.floor(integer % 1000000);

@@ -8,7 +8,7 @@ const getCardinalDescription = (
 
 describe('0: cero', () => {
   it('works', () => {
-    expect(getCardinalDescription(0)).toEqual('');
+    expect(getCardinalDescription(0)).toEqual('cero');
   });
 });
 describe('1: uno', () => {
@@ -336,6 +336,12 @@ describe('199: ciento noventa y nueve pesos 00/100 MN', () => {
     expect(getCardinalDescription(199, true)).toEqual(
       'ciento noventa y nueve pesos 00/100 MN'
     );
+  });
+});
+
+describe('0.75: cero pesos 75/100 MN', () => {
+  it('works', () => {
+    expect(getCardinalDescription(0.75, true)).toEqual('cero pesos 75/100 MN');
   });
 });
 
