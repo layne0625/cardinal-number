@@ -3,7 +3,7 @@ import { getPoints } from '../utils';
 
 const baseMap: NumberDictType = {
   0: 'cero',
-  1: 'uno',
+  1: 'un',
   2: 'dos',
   3: 'tres',
   4: 'cuatro',
@@ -23,7 +23,7 @@ const baseMap: NumberDictType = {
   18: 'dieciocho',
   19: 'diecinueve',
   20: 'veinte',
-  21: 'veintiuno',
+  21: 'veintiún',
   22: 'veintidós',
   23: 'veintitrés',
   24: 'veinticuatro',
